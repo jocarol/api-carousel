@@ -22,10 +22,10 @@ class App extends Component {
 
     this.state = {
       offset: 0,
-      posts: null,  // Post pool.
-      limit: 5,     // N° of posts to fetch per API call.
-      index: 0,     // Index of the post in the pool to render.
-      lazyOffset: 2 // Threshold value before a new API call is made
+      posts: null,    // Post pool.
+      limit: 5,       // N° of posts to fetch per API call.
+      index: 0,       // Index of the post in the pool to render.
+      lazyOffset: 2   // Threshold value before a new API call is made
     };
   }
 
@@ -122,8 +122,8 @@ class App extends Component {
         </div>
       );
 
-    const mediaUrl = posts[index].media.urls.regular; // Assignation of the var needed
-    const avatar = posts[index].media.user.profile_images.medium || ""; // for string interpolation.
+    const mediaUrl = posts[index].media.urls.regular;                     // Assignation of the var needed
+    const avatar = posts[index].media.user.profile_images.medium || "";   // for string interpolation.
     const likeCount = posts[index].media.statistics.likes || "0";
     const personnePersonnes = likeCount < 2 ? "personne" : "personnes";
     const lastName = posts[index].media.user.last_name || "";
