@@ -1,4 +1,4 @@
-## Awestome Table Technic test.
+## Awestome Table Technic test
 
 Answers to the google doc : https://docs.google.com/document/d/1VUifPuTLUcNkHLGjdpOY7rEJZgRcKSpBilTzvBdOjdI/edit?ts=5de13710
 
