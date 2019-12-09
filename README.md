@@ -1,4 +1,4 @@
-## Awestome Table Technic test
+# Awestome Table Technic Test
 
 Answers to the google doc : https://docs.google.com/document/d/1VUifPuTLUcNkHLGjdpOY7rEJZgRcKSpBilTzvBdOjdI/edit?ts=5de13710
 
@@ -28,8 +28,19 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How it works
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Lazy fetching
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![samplePic1](https://i.imgur.com/KMo90RU.png)
+Posts are fetch only when it needs too.
+
+## Alternative layout
+
+![samplePic2](https://i.imgur.com/BNFpyKy.png)
+A cool way to CSS the Card
+
+## Problems
+
+![samplePic3](https://i.imgur.com/5MFdDxq.png)
+Sometimes API returns undefined. I was not able to correctly handle the error, even inside a Try Catch. As mentioned, error does not show up in production.
