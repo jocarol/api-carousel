@@ -22,9 +22,9 @@ class App extends Component {
 
     this.state = {
       offset: 0,
-      posts: null, // Post pool.
-      limit: 5, // N° of posts to fetch per API call.
-      index: 0, // Index of the post in the pool to render.
+      posts: null,  // Post pool.
+      limit: 5,     // N° of posts to fetch per API call.
+      index: 0,     // Index of the post in the pool to render.
       lazyOffset: 2 // Threshold value before a new API call is made
     };
   }
