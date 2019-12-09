@@ -1,0 +1,104 @@
+@media screen and (max-width:700px) {
+  .actionWrapper {
+    flex-direction: column-reverse;
+  }
+  .MuiCardHeader-root {
+    display: inline !important;
+  }
+}
+
+.loaderContainer {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+}
+
+.actionWrapper {
+  align-items: center;
+  display: flex;
+}
+
+.name {
+  color : #8A8A8A !important;
+  margin-right: 7px !important;
+  font-size: 1.25rem !important;
+  text-align: center;
+  padding-top: 3px;
+}
+
+.title{
+  color: #6F6F6F !important;
+}
+
+.description {
+  color: #6F6F6F !important;
+}
+
+.card {
+  background-color: #EBE9E7 !important;
+  /* opacity: 0; */
+}
+
+.MuiTypography-root.name.MuiTypography-body1 {
+  font-size: 1.1rem;
+}
+
+.MuiCardContent-root {
+  padding-left: 20px !important;
+}
+
+.date {
+  padding-left: 20px;
+  padding-bottom: 1vh;
+  color: #8A8A8A !important;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  padding: 2.7vh;
+  height: 100vh;
+}
+
+.vAlign {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.like {
+  padding-block-end: 4.5vh !important;
+}
+
+.avatar {
+  height: 64px !important;
+  width: 64px !important;
+}
+
+.canvaPic {
+  background-size: auto !important;
+  transform: scale(1.2);
+  filter: blur(8px);
+  left:-15px;
+  right:-15px;
+  top:-15px;
+  bottom:-15px;
+}
+
+.gridPicWrapper {
+  display: inline-block;
+  position:relative;
+}
+
+.media {
+  position:absolute;
+  z-index: 1;
+  object-fit: contain;
+  height : 100vh;
+  }
