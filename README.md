@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Awestome Table Technic test.
+
+Answers to the google doc : https://docs.google.com/document/d/1VUifPuTLUcNkHLGjdpOY7rEJZgRcKSpBilTzvBdOjdI/edit?ts=5de13710
 
 ## Available Scripts
 
