@@ -30,54 +30,48 @@ class App extends Component {
   }
 
   async fetchPosts() {
-    // Requesting posts via state's API parameters.
-    const { limit, offset } = this.state;
+    const { limit, offset } = this.state; // Requesting posts via state's API parameters.
 
-    this.setState({ classAnim: "" }, () => {
-      axios({
-        method: "get",
-        url: `https://api.slstice.com/mock/posts?offset=${offset}&limit=${limit}&api_key=ZkUvF7GBqc0l1Ou6DSPf`,
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }).then(async ({ data: { response } }) => {
-        // Mapping the responses to request the /medias/ endpoint
-        const postArray = await Promise.all(
-          // with the propper parameters, for every retrieved post.
-          response.posts.map(async post => {
-            const {
-              data: {
-                response: { media }
-              }
-            } = await axios({
-              method: "get",
-              url: `https://api.slstice.com/mock/medias/${post.mediaId}?api_key=ZkUvF7GBqc0l1Ou6DSPf`,
-              headers: {
-                "Content-Type": "application/json"
-              }
-            });
-            const {
-              data: {
-                response: { user }
-              }
-            } = await axios({
-              method: "get",
-              url: `https://api.slstice.com/mock/users/${media.owner.username}?api_key=ZkUvF7GBqc0l1Ou6DSPf`,
-              headers: {
-                "Content-Type": "application/json"
-              }
-            });
-            media.user = user; // Saving freshly fetched media and user object into post's properties.
-            post.media = media;
-            return post;
-          })
-        );
-        // Assignation of the newly fetched array of posts to the component's state.
-        // If post is null, return this.setState({ posts: postArray }). Else concatenate old state with new posts.
-        return this.state.posts === null
-          ? this.setState({ posts: postArray })
-          : this.setState({ posts: [...this.state.posts, ...postArray] });
-      });
+    axios({
+      method: "get",
+      url: `https://api.slstice.com/mock/posts?offset=${offset}&limit=${limit}&api_key=ZkUvF7GBqc0l1Ou6DSPf`,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(async ({ data: { response } }) => {
+      const postArray = await Promise.all(   // Mapping the responses to request the /medias/ endpoint
+        response.posts.map(async post => {   // with the propper parameters, for every retrieved post.
+          const {
+            data: {
+              response: { media }
+            }
+          } = await axios({
+            method: "get",
+            url: `https://api.slstice.com/mock/medias/${post.mediaId}?api_key=ZkUvF7GBqc0l1Ou6DSPf`,
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          const {
+            data: {
+              response: { user }
+            }
+          } = await axios({
+            method: "get",
+            url: `https://api.slstice.com/mock/users/${media.owner.username}?api_key=ZkUvF7GBqc0l1Ou6DSPf`,
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
+          post.media = media;  // Saving freshly fetched media and user object into post's properties.
+          media.user = user;
+          return post;
+        })
+      );
+      
+      return this.state.posts === null                                    // Assignation of the newly fetched array of posts to the component's state.
+        ? this.setState({ posts: postArray })                             // If post is null, return this.setState({ posts: postArray }).
+        : this.setState({ posts: [...this.state.posts, ...postArray] });  // Else concatenate old state with new posts.
     });
   }
 
@@ -86,26 +80,21 @@ class App extends Component {
   // II  - The cyclcling through API fetched posts.
   // III - The resulting compoponent's state assignation.
   async stateLoader() {
-    // If the post pool is empty, or if theres no more post to render, minus the lazy offset trigger.
-    // Assign the correct value to the offset parameter, then fetch new posts :
-    if (
-      this.state.posts === null ||
+    if (                           // If the post pool is empty, or if theres no more post to render, minus the lazy offset trigger,
+      this.state.posts === null || // Assign the correct value to the offset parameter, then fetch new posts.
       this.state.index >= this.state.posts.length - 1 - this.state.lazyOffset
     ) {
-      // Thus we need to load the posts in the component's state. At this point in any cases,
-      // states have been properly updated.
       return this.setState({ offset: this.state.index }, () =>
         this.fetchPosts()
       );
     }
     this.setState({
-      // Trigerring the render of the new post by a setChange() of the incremented post pool index.
-      index: this.state.index + 1
-    });
+      index: this.state.index + 1   // Trigerring the render of the new post by a setChange()
+    });                             // of the incremented post pool index.
   }
 
   componentDidMount() {
-    this.stateLoader(); // Call upon component mounting.
+    this.stateLoader();   // Call upon component mounting.
     setInterval(() => {
       this.stateLoader(); // Timer regulating the call to the stateLoader() method.
     }, 6000);
@@ -114,16 +103,15 @@ class App extends Component {
   render() {
     const { posts, index } = this.state;
 
-    if (!posts)
-      // Rendering a spinner while there is no post to consume.
+    if (!posts) // Rendering a spinner while there is no post to consume.
       return (
         <div className="loaderContainer">
           <CircularProgress />
         </div>
       );
 
-    const mediaUrl = posts[index].media.urls.regular;                     // Assignation of the var needed
-    const avatar = posts[index].media.user.profile_images.medium || "";   // for string interpolation.
+    const mediaUrl = posts[index].media.urls.regular;                   // Assignation of the var needed
+    const avatar = posts[index].media.user.profile_images.medium || ""; // for string interpolation.
     const likeCount = posts[index].media.statistics.likes || "0";
     const personnePersonnes = likeCount < 2 ? "personne" : "personnes";
     const lastName = posts[index].media.user.last_name || "";
